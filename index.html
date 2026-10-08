@@ -28,6 +28,10 @@
             scroll-behavior: smooth;
         }
 
+        h1, h2, h3, h4, .logo-text, .btn, .pillar-base {
+            font-family: 'Copperplate Gothic Bold', 'Copperplate', 'Copperplate Gothic', serif;
+        }
+
         a {
             text-decoration: none;
             color: inherit;
@@ -72,6 +76,7 @@
         .nav-menu {
             display: flex;
             gap: 25px;
+            align-items: center;
         }
 
         .nav-menu a {
@@ -85,13 +90,28 @@
             color: var(--secondary-color);
         }
 
+        /* HAMBURGER MENU */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: 0.3s;
+        }
+
         /* HERO SECTION */
         .hero {
-            background: linear-gradient(rgba(13, 35, 58, 0.85), rgba(13, 35, 58, 0.85)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80');
+            background: linear-gradient(rgba(13, 35, 58, 0.85), rgba(13, 35, 58, 0.85)), url('imagen alusiva.png');
             background-size: cover;
             background-position: center;
             color: var(--white);
-            padding: 120px 20px;
+            padding: 140px 20px;
             text-align: center;
         }
 
@@ -104,7 +124,7 @@
             color: var(--secondary-color);
             letter-spacing: 2px;
             margin-bottom: 10px;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .hero h1 {
@@ -116,6 +136,7 @@
             font-size: 1.2rem;
             margin-bottom: 30px;
             color: #e2e8f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .btn-group {
@@ -131,6 +152,7 @@
             font-weight: bold;
             transition: all 0.3s;
             display: inline-block;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -154,9 +176,10 @@
 
         /* SECTIONS */
         section {
-            padding: 80px 20px;
+            padding: 90px 20px;
             max-width: 1200px;
             margin: 0 auto;
+            scroll-margin-top: 80px;
         }
 
         .section-title {
@@ -183,34 +206,60 @@
             background: var(--secondary-color);
         }
 
-        /* QUIÉNES SOMOS */
-        .about-grid {
+        /* QUIÉNES SOMOS - PILARES MINIMALISTAS */
+        .pillars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 30px;
         }
 
-        .about-card {
+        .pillar {
             background: var(--light-color);
-            padding: 30px;
-            border-radius: 8px;
-            border-top: 4px solid var(--secondary-color);
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            transition: transform 0.3s;
         }
 
-        .about-card:hover {
+        .pillar:hover, .pillar.active {
+            border-color: var(--secondary-color);
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         }
 
-        .about-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .about-card p {
+        .pillar-content {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
             font-size: 0.95rem;
-            color: var(--gray);
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .pillar.active .pillar-content, .pillar:hover .pillar-content {
+            opacity: 1;
+            max-height: 300px;
+        }
+
+        .pillar-base {
+            text-align: center;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            border-top: 2px solid var(--secondary-color);
+            padding-top: 15px;
+            margin-top: auto;
+            letter-spacing: 1px;
         }
 
         /* SERVICIOS */
@@ -251,6 +300,7 @@
         .service-content p {
             font-size: 0.9rem;
             color: var(--gray);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         /* TRAMITOLOGÍA */
@@ -265,16 +315,23 @@
             padding: 20px;
             border-radius: 6px;
             border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        .tramite-item:hover {
+            transform: translateX(5px);
         }
 
         .tramite-item h4 {
             color: var(--primary-color);
             margin-bottom: 8px;
+            font-size: 1.05rem;
         }
 
         .tramite-item p {
             font-size: 0.9rem;
             color: var(--gray);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         /* CONTACTO */
@@ -282,6 +339,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
+            align-items: start;
         }
 
         .contact-form form {
@@ -296,12 +354,50 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .checkbox-group input {
+            margin-top: 4px;
+        }
+
+        .checkbox-group a {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .contact-right {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
         }
 
         .info-block h3 {
@@ -312,6 +408,7 @@
 
         .info-block p {
             color: var(--gray);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         /* FOOTER */
@@ -351,10 +448,30 @@
             color: var(--gray);
         }
 
+        /* MEDIA QUERIES PARA CELULARES (MENÚ HAMBURGUESA) */
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
+            .hamburger {
+                display: flex;
             }
+
+            .nav-menu {
+                position: fixed;
+                top: 75px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 75px);
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                gap: 30px;
+                transition: 0.4s ease;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -366,14 +483,20 @@
     <header>
         <div class="nav-container">
             <a href="#home" class="logo">
+                <img src="logo fenhomenal.png" alt="Logo FenHomenal">
                 FENHOMENAL
             </a>
-            <ul class="nav-menu">
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#nosotros">QUIÉNES SOMOS</a></li>
-                <li><a href="#servicios">SERVICIOS</a></li>
-                <li><a href="#tramitologia">TRAMITOLOGÍA</a></li>
-                <li><a href="#contacto">CONTACTO</a></li>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">HOME</a></li>
+                <li><a href="#nosotros" class="nav-link">QUIÉNES SOMOS</a></li>
+                <li><a href="#servicios" class="nav-link">SERVICIOS</a></li>
+                <li><a href="#tramitologia" class="nav-link">TRAMITOLOGÍA</a></li>
+                <li><a href="#contacto" class="nav-link">CONTACTO</a></li>
             </ul>
         </div>
     </header>
@@ -394,22 +517,30 @@
         <div class="section-title">
             <h2>¿QUIÉNES SOMOS?</h2>
         </div>
-        <div class="about-grid">
-            <div class="about-card">
-                <h3>ASESORÍA</h3>
-                <p>“Brindamos orientación profesional para facilitar la toma de decisiones y proteger los intereses de nuestros clientes, mediante acompañamiento jurídico, administrativo y empresarial.”</p>
+        <div class="pillars-grid">
+            <div class="pillar" onclick="this.classList.toggle('active')">
+                <div class="pillar-content">
+                    <p>“Brindamos orientación profesional para facilitar la toma de decisiones y proteger los intereses de nuestros clientes, mediante acompañamiento jurídico, administrativo y empresarial.”</p>
+                </div>
+                <div class="pillar-base">ASESORÍA</div>
             </div>
-            <div class="about-card">
-                <h3>GESTIÓN</h3>
-                <p>“Facilitamos la realización y seguimiento de trámites administrativos y corporativos, simplificando procesos y reduciendo tiempos y cargas operativas.”</p>
+            <div class="pillar" onclick="this.classList.toggle('active')">
+                <div class="pillar-content">
+                    <p>“Facilitamos la realización y seguimiento de trámites administrativos y corporativos, simplificando procesos y reduciendo tiempos y cargas operativas.”</p>
+                </div>
+                <div class="pillar-base">GESTIÓN</div>
             </div>
-            <div class="about-card">
-                <h3>INMOBILIARIA</h3>
-                <p>“Ofrecemos acompañamiento en operaciones inmobiliarias, incluyendo gestión, comercialización, corretaje y asesoría en bienes raíces residenciales, comerciales e industriales.”</p>
+            <div class="pillar" onclick="this.classList.toggle('active')">
+                <div class="pillar-content">
+                    <p>“Ofrecemos acompañamiento en operaciones inmobiliarias, incluyendo gestión, comercialización, corretaje y asesoría en bienes raíces residenciales, comerciales e industriales.”</p>
+                </div>
+                <div class="pillar-base">INMOBILIARIA</div>
             </div>
-            <div class="about-card">
-                <h3>RESPALDO</h3>
-                <p>“Acompañamos cada proceso con atención personalizada, discreción y seguimiento profesional, buscando que nuestros clientes cuenten con un respaldo confiable durante cada etapa.”</p>
+            <div class="pillar" onclick="this.classList.toggle('active')">
+                <div class="pillar-content">
+                    <p>“Acompañamos cada proceso con atención personalizada, discreción y seguimiento profesional, buscando que nuestros clientes cuenten con un respaldo confiable durante cada etapa.”</p>
+                </div>
+                <div class="pillar-base">RESPALDO JURÍDICO</div>
             </div>
         </div>
     </section>
@@ -501,22 +632,31 @@
                     <div class="form-group">
                         <textarea name="mensaje" rows="4" placeholder="Detalle de su solicitud" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer; width: 100%;">ENVIAR SOLICITUD</button>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="privacidad" required>
+                        <label for="privacidad">He leído y acepto el <a href="#" onclick="alert('Aviso de Privacidad: Sus datos serán tratados con estricta confidencialidad para fines de atención y gestión corporativa.'); return false;">aviso de privacidad</a>.</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer; width: 100%; margin-top: 10px;">ENVIAR SOLICITUD</button>
                 </form>
             </div>
-            <div class="contact-info">
-                <div class="info-block">
-                    <h3>UBICACIÓN</h3>
-                    <p>C. Netzahualcóyotl #1597, Ed. EPICENTRIA, piso 4, Col. Cd. del Sol, Zapopan, Jal.</p>
+            <div class="contact-right">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.868774211116!2d-103.4022!3d20.6738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae15d18d41a7%3A0x6b4ef823190df0e7!2sC.%20Netzahualc%C3%B3yotl%201597%2C%20Ciudad%20del%20Sol%2C%2045050%20Zapopan%2C%20Jal.!5e0!3m2!1ses-419!2smx!4v1650000000000!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-                <div class="info-block">
-                    <h3>TELÉFONOS</h3>
-                    <p><a href="tel:+523321546253">+52 (33) 2154 6253</a></p>
-                    <p><a href="tel:+523317541199">+52 (33) 1754 1199</a></p>
-                </div>
-                <div class="info-block">
-                    <h3>CORREO ELECTRÓNICO</h3>
-                    <p><a href="mailto:serviciosintegralesfenhomenal@gmail.com">serviciosintegralesfenhomenal@gmail.com</a></p>
+                <div class="contact-info">
+                    <div class="info-block">
+                        <h3>UBICACIÓN</h3>
+                        <p>C. Netzahualcóyotl #1597, Ed. EPICENTRIA, piso 4, Col. Cd. del Sol, Zapopan, Jal.</p>
+                    </div>
+                    <div class="info-block">
+                        <h3>TELÉFONOS</h3>
+                        <p><a href="tel:+523321546253">+52 (33) 2154 6253</a></p>
+                        <p><a href="tel:+523317541199">+52 (33) 1754 1199</a></p>
+                    </div>
+                    <div class="info-block">
+                        <h3>CORREO ELECTRÓNICO</h3>
+                        <p><a href="mailto:serviciosintegralesfenhomenal@gmail.com">serviciosintegralesfenhomenal@gmail.com</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -548,5 +688,19 @@
         </div>
     </footer>
 
+    <script>
+        // Script para el menú hamburguesa responsivo
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en un enlace en móviles
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        }));
+    </script>
 </body>
 </html>
