@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://images.unsplash.com https://commondatastorage.googleapis.com https://formspree.io https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com; media-src 'self' https://commondatastorage.googleapis.com; connect-src 'self' https://formspree.io; frame-src https://www.google.com;">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    
+    <title>PRODUCCIONES 360 | Productora Audiovisual</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    
+    <!-- Precarga de Fuentes y Conexiones de Red -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Precarga de Imagen LCP (Logo Hero) -->
+    <link rel="preload" as="image" href="logo.png" type="image/png">
+
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --header-bg: #EAECEE;
+            --accent-blue: #0055FF;
+            --text-color: #FFFFFF;
+            --text-secondary: #E0E0E0;
+            --nav-text-color: #222222;
+            --font-family: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        input, textarea, label {
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* --- INTRO / SPLASH SCREEN --- */
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000000;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .intro-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .intro-fallback-btn {
+            position: absolute;
+            background-color: var(--accent-blue);
+            color: #FFFFFF;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,85,255,0.4);
+            z-index: 100001;
+            display: none;
+        }
+
+        .skip-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background-color: rgba(0, 85, 255, 0.85);
+            color: #FFFFFF;
+            border: 1px solid #0055FF;
+            padding: 0.6rem 1.4rem;
+            font-family: var(--font-family);
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            z-index: 100000;
+        }
+
+        .skip-btn:hover {
+            background-color: #0055FF;
+            transform: scale(1.05);
+        }
+
+        .intro-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* --- ENCABEZADO Y NAVEGACIÓN --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--header-bg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #CCCCCC;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .logo-text-fallback {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #121212;
+            letter-spacing: 1px;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--nav-text-color);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--nav-text-color);
+            font-family: var(--font-family);
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.5rem 0.8rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            color: var(--accent-blue);
+            background-color: rgba(0, 85, 255, 0.08);
+        }
+
+        .nav-btn.active {
+            color: #FFFFFF;
+            background-color: var(--accent-blue);
+        }
+
+        @media (max-width: 820px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--header-bg);
+                border-bottom: 1px solid #CCCCCC;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-in-out;
+            }
+
+            .nav.open {
+                max-height: 300px;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0.8rem;
+                align-items: center;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem;
+            }
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .main-content {
+            min-height: 80vh;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+
+        .tab-content {
+            display: none;
+            width: 100%;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            position: relative;
+            min-height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #181818 0%, #242424 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            padding: 2.5rem 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100%;
+        }
+
+        .hero-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 55%;
+            max-width: 500px;
+            opacity: 0.08;
+            pointer-events: none;
+            object-fit: contain;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #FFFFFF;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+            color: var(--text-secondary);
+            margin: 0 auto 2rem auto;
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            font-family: var(--font-family);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background-color: #0044cc;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:disabled {
+            background-color: #444444 !important;
+            color: #888888 !important;
+            cursor: not-allowed !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: #FFFFFF;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- SERVICIOS EN FILA --- */
+        .section-title {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #B0B0B0;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .servicios-fila-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            width: 100%;
+        }
+
+        .servicio-fila-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .servicio-fila-item:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .servicio-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.35;
+            transition: opacity 0.5s ease, transform 0.6s ease;
+        }
+
+        .servicio-fila-item.active .servicio-bg-image {
+            opacity: 0.85;
+            transform: scale(1.03);
+            filter: brightness(0.9);
+        }
+
+        .servicio-overlay-dark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(15,15,15,0.92) 0%, rgba(15,15,15,0.75) 60%, rgba(15,15,15,0.4) 100%);
+            transition: background 0.4s ease;
+        }
+
+        .servicio-header-content {
+            position: relative;
+            z-index: 2;
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .servicio-titulo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .servicio-icon {
+            font-size: 1.4rem;
+        }
+
+        .servicio-titulo {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .servicio-toggle-icon {
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            transition: transform 0.4s ease;
+        }
+
+        .servicio-fila-item.active .servicio-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .servicio-detalles-content {
+            position: relative;
+            z-index: 2;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 1.8rem;
+        }
+
+        .servicio-fila-item.active .servicio-detalles-content {
+            max-height: 250px;
+            padding: 0 1.8rem 1.5rem 1.8rem;
+        }
+
+        .servicio-detalles-content p {
+            color: #F0F0F0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+            max-width: 800px;
+        }
+
+        .btn-cotizar-servicio {
+            padding: 0.6rem 1.4rem;
+            background-color: var(--accent-blue);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-cotizar-servicio:hover {
+            background-color: #0044cc;
+        }
+
+        /* --- CATÁLOGO DE PROYECTOS --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-media {
+            position: relative;
+            height: 180px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background-color: #000000;
+        }
+
+        .portfolio-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .media-badge-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 85, 255, 0.9);
+            color: #FFFFFF;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: background 0.3s ease, transform 0.2s ease;
+            z-index: 5;
+        }
+
+        .media-badge-btn:hover {
+            background: var(--accent-blue);
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: rgba(0, 85, 255, 0.2);
+            color: var(--accent-blue);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            align-self: flex-start;
+        }
+
+        .portfolio-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #FFFFFF;
+        }
+
+        .portfolio-item p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .btn-card {
+            margin-top: auto;
+            width: 100%;
+            padding: 0.65rem;
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--accent-blue);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-card:hover {
+            background-color: var(--accent-blue);
+            color: #FFFFFF;
+        }
+
+        /* --- MATERIAL RECIENTE --- */
+        .material-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-left: 4px solid var(--accent-blue);
+            padding: 1.5rem;
+            border-radius: 6px;
+        }
+
+        .timeline-card h4 {
+            font-size: 1.1rem;
+            color: #FFFFFF;
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline-card span {
+            font-size: 0.78rem;
+            color: var(--accent-blue);
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 0.6rem;
+        }
+
+        .timeline-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* --- CONTACTO --- */
+        .contacto-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .contacto-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contacto-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contacto-form input, .contacto-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            color: #FFFFFF;
+            font-family: var(--font-family);
+            font-size: 0.9rem;
+        }
+
+        .contacto-form input:focus, .contacto-form textarea:focus {
+            border-color: var(--accent-blue);
+            outline: none;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 500px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Campo Honeypot para Antispam */
+        .website-honey {
+            display: none !important;
+            visibility: hidden !important;
+        }
+
+        /* CONTENEDOR DESTACADO DE PRIVACIDAD */
+        .privacy-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            background-color: rgba(0, 85, 255, 0.08);
+            border: 1px solid rgba(0, 85, 255, 0.3);
+            padding: 0.9rem;
+            border-radius: 6px;
+            margin: 0.3rem 0;
+        }
+
+        .privacy-box input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-blue);
+            cursor: pointer;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .privacy-box label {
+            font-size: 0.85rem;
+            color: #FFFFFF;
+            line-height: 1.4;
+            cursor: pointer;
+        }
+
+        .link-privacidad {
+            color: #3388ff;
+            text-decoration: underline;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: inherit;
+            font-family: inherit;
+            font-weight: 700;
+            padding: 0;
+        }
+
+        .ubicacion-info {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background-color: #25D366;
+            color: #FFFFFF;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .map-container {
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        /* --- MODAL AVISO DE PRIVACIDAD --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+            z-index: 100002;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-body {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            color: var(--text-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .modal-body h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .modal-body p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Botón flotante WhatsApp */
+        .whatsapp-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-decoration: none;
+            z-index: 999;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #0a0a0a;
+            color: #B0B0B0;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INTRO SPLASH SCREEN -->
+    <div id="intro-overlay" class="intro-overlay">
+        <video id="intro-video" class="intro-video" autoplay muted playsinline webkit-playsinline loop preload="auto">
+            <source src="intro.mp4" type="video/mp4">
+            Tu navegador no soporta reproducción de video.
+        </video>
+        <button id="intro-fallback-btn" class="intro-fallback-btn" onclick="iniciarVideoAudio()">▶ Iniciar Experiencia 360</button>
+        <button class="skip-btn" onclick="cerrarIntro()">Saltar Intro ✕</button>
+    </div>
+
+    <!-- ENCABEZADO -->
+    <header class="header">
+        <div class="logo">
+            <button class="logo-btn" onclick="cambiarPestana('inicio')">
+                <img src="logo.png" 
+                     alt="PRODUCCIONES 360" 
+                     class="logo-img" 
+                     width="180" 
+                     height="40" 
+                     fetchpriority="high"
+                     onerror="this.onerror=null; this.src='logo.jpg'; this.onerror=function(){ this.style.display='none'; document.getElementById('logo-text').style.display='inline-block'; };">
+                <span id="logo-text" class="logo-text-fallback" style="display:none;">PRODUCCIONES 360</span>
+            </button>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav" id="mainNav">
+            <ul>
+                <li><button class="nav-btn active" data-tab="inicio" onclick="cambiarPestana('inicio')">Inicio</button></li>
+                <li><button class="nav-btn" data-tab="servicios" onclick="cambiarPestana('servicios')">Servicios</button></li>
+                <li><button class="nav-btn" data-tab="catalogo" onclick="cambiarPestana('catalogo')">Catálogo</button></li>
+                <li><button class="nav-btn" data-tab="material" onclick="cambiarPestana('material')">Material Reciente</button></li>
+                <li><button class="nav-btn" data-tab="contacto" onclick="cambiarPestana('contacto')">Contacto</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="main-content">
+
+        <!-- PESTAÑA 1: INICIO -->
+        <section id="inicio" class="tab-content active">
+            <div class="hero">
+                <img src="logo.png" 
+                     alt="Watermark" 
+                     class="hero-watermark" 
+                     width="500" 
+                     height="300"
+                     onerror="this.onerror=null; this.src='logo.jpg'; this.onerror=function(){ this.style.display='none'; };">
+                
+                <div class="hero-content">
+                    <h1>Materializando Ideas</h1>
+                    <p>Producciones 360 se encarga de transmutar de la idea al lienzo el contenido que el cliente necesita para su marca.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="cambiarPestana('servicios')">Ver Servicios</button>
+                        <button class="btn btn-secondary" onclick="cambiarPestana('contacto')">Contáctanos</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTAÑA 2: SERVICIOS CON CDN DE NETLIFY Y LAZY LOADING -->
+        <section id="servicios" class="tab-content">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <p class="section-subtitle">Haz clic en cualquier servicio para desplegar los detalles en pantalla.</p>
+
+            <div class="servicios-fila-container">
+                <!-- Servicio 1 -->
+                <div class="servicio-fila-item" onclick="toggleServicioFila(this)">
+                    <div class="servicio-bg-image" 
+                         loading="lazy" 
+                         style="background-image: url('/.netlify/images?url=https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d&w=800&fm=avif&q=80');"></div>
+                    <div class="servicio-overlay-dark"></div>
+                    <div class="servicio-header-content">
+                        <div class="servicio-titulo-wrap">
+                            <span class="servicio-icon">🎥</span>
+                            <span class="servicio-titulo">Producción de Video Corporativo</span>
+                        </div>
+                        <span class="servicio-toggle-icon">▼</span>
+                    </div>
+                    <div class="servicio-detalles-content">
+                        <p>Videos institucionales, testimoniales, piezas de inducción de personal y comunicación interna en alta definición.</p>
+                        <button class="btn-cotizar-servicio" onclick="event.stopPropagation(); cambiarPestana('contacto');">Cotizar Servicio</button>
+                    </div>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="servicio-fila-item" onclick="toggleServicioFila(this)">
+                    <div class="servicio-bg-image" 
+                         loading="lazy" 
+                         style="background-image: url('/.netlify/images?url=https://images.unsplash.com/photo-1511578314322-379afb476865&w=800&fm=avif&q=80');"></div>
+                    <div class="servicio-overlay-dark"></div>
+                    <div class="servicio-header-content">
+                        <div class="servicio-titulo-wrap">
+                            <span class="servicio-icon">📡</span>
+                            <span class="servicio-titulo">Transmisiones en Vivo (Streaming)</span>
+                        </div>
+                        <span class="servicio-toggle-icon">▼</span>
+                    </div>
+                    <div class="servicio-detalles-content">
+                        <p>Cobertura multicámara e integración en tiempo real para congresos, seminarios y lanzamientos corporativos.</p>
+                        <button class="btn-cotizar-servicio" onclick="event.stopPropagation(); cambiarPestana('contacto');">Cotizar Servicio</button>
+                    </div>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="servicio-fila-item" onclick="toggleServicioFila(this)">
+                    <div class="servicio-bg-image" 
+                         loading="lazy" 
+                         style="background-image: url('/.netlify/images?url=https://images.unsplash.com/photo-1554048612-b6a482bc67e5&w=800&fm=avif&q=80');"></div>
+                    <div class="servicio-overlay-dark"></div>
+                    <div class="servicio-header-content">
+                        <div class="servicio-titulo-wrap">
+                            <span class="servicio-icon">📸</span>
+                            <span class="servicio-titulo">Fotografía Profesional</span>
+                        </div>
+                        <span class="servicio-toggle-icon">▼</span>
+                    </div>
+                    <div class="servicio-detalles-content">
+                        <p>Retrato ejecutivo, fotografía de producto y cobertura de eventos empresariales de alto nivel.</p>
+                        <button class="btn-cotizar-servicio" onclick="event.stopPropagation(); cambiarPestana('contacto');">Cotizar Servicio</button>
+                    </div>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="servicio-fila-item" onclick="toggleServicioFila(this)">
+                    <div class="servicio-bg-image" 
+                         loading="lazy" 
+                         style="background-image: url('/.netlify/images?url=https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7&w=800&fm=avif&q=80');"></div>
+                    <div class="servicio-overlay-dark"></div>
+                    <div class="servicio-header-content">
+                        <div class="servicio-titulo-wrap">
+                            <span class="servicio-icon">📱</span>
+                            <span class="servicio-titulo">Contenido para Redes Sociales</span>
+                        </div>
+                        <span class="servicio-toggle-icon">▼</span>
+                    </div>
+                    <div class="servicio-detalles-content">
+                        <p>Reels, TikToks y formato vertical optimizado para generar mayor interacción y alcance orgánico.</p>
+                        <button class="btn-cotizar-servicio" onclick="event.stopPropagation(); cambiarPestana('contacto');">Cotizar Servicio</button>
+                    </div>
+                </div>
+
+                <!-- Servicio 5 -->
+                <div class="servicio-fila-item" onclick="toggleServicioFila(this)">
+                    <div class="servicio-bg-image" 
+                         loading="lazy" 
+                         style="background-image: url('/.netlify/images?url=https://images.unsplash.com/photo-1492691527719-9d1e07e534b4&w=800&fm=avif&q=80');"></div>
+                    <div class="servicio-overlay-dark"></div>
+                    <div class="servicio-header-content">
+                        <div class="servicio-titulo-wrap">
+                            <span class="servicio-icon">🎬</span>
+                            <span class="servicio-titulo">Spots Publicitarios y Comerciales</span>
+                        </div>
+                        <span class="servicio-toggle-icon">▼</span>
+                    </div>
+                    <div class="servicio-detalles-content">
+                        <p>Desarrollo conceptual, guionismo, rodaje profesional e iluminación enfocada en conversión.</p>
+                        <button class="btn-cotizar-servicio" onclick="event.stopPropagation(); cambiarPestana('contacto');">Cotizar Servicio</button>
+                    </div>
+                </div>
+
+                <!-- Servicio 6 -->
+                <div class="servicio-fila-item" onclick="toggleServicioFila(this)">
+                    <div class="servicio-bg-image" 
+                         loading="lazy" 
+                         style="background-image: url('/.netlify/images?url=https://images.unsplash.com/photo-1590602847861-f357a9332bbc&w=800&fm=avif&q=80');"></div>
+                    <div class="servicio-overlay-dark"></div>
+                    <div class="servicio-header-content">
+                        <div class="servicio-titulo-wrap">
+                            <span class="servicio-icon">🎙️</span>
+                            <span class="servicio-titulo">Producción de Podcast</span>
+                        </div>
+                        <span class="servicio-toggle-icon">▼</span>
+                    </div>
+                    <div class="servicio-detalles-content">
+                        <p>Grabación multicanal de audio y video, edición y clips promocionales para YouTube y Spotify.</p>
+                        <button class="btn-cotizar-servicio" onclick="event.stopPropagation(); cambiarPestana('contacto');">Cotizar Servicio</button>
+                    </div>
+                </div>
+
+                <!-- Servicio 7 -->
+                <div class="servicio-fila-item" onclick="toggleServicioFila(this)">
+                    <div class="servicio-bg-image" 
+                         loading="lazy" 
+                         style="background-image: url('/.netlify/images?url=https://images.unsplash.com/photo-1626785774573-4b799315345d&w=800&fm=avif&q=80');"></div>
+                    <div class="servicio-overlay-dark"></div>
+                    <div class="servicio-header-content">
+                        <div class="servicio-titulo-wrap">
+                            <span class="servicio-icon">🎨</span>
+                            <span class="servicio-titulo">Diseño Gráfico & Branding</span>
+                        </div>
+                        <span class="servicio-toggle-icon">▼</span>
+                    </div>
+                    <div class="servicio-detalles-content">
+                        <p>Identidad corporativa, logotipos, banners publicitarios y manuales de marca integrados a tu contenido.</p>
+                        <button class="btn-cotizar-servicio" onclick="event.stopPropagation(); cambiarPestana('contacto');">Cotizar Servicio</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTAÑA 3: CATÁLOGO DE PROYECTOS -->
+        <section id="catalogo" class="tab-content">
+            <h2 class="section-title">Catálogo de Proyectos</h2>
+            
+            <div class="grid-container">
+                <!-- Tarjeta 1 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-media">
+                        <video id="vid-1" muted playsinline preload="metadata" width="300" height="180">
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                        </video>
+                        <button class="media-badge-btn" id="btn-vid-1" onclick="reproducirMuestraVideo('vid-1', 'btn-vid-1')">▶ Reproducir Muestra</button>
+                    </div>
+                    <span class="tag">Spot Publicitario</span>
+                    <h4>Campaña Promocional Comercial</h4>
+                    <p>Producción comercial completa con diseño de iluminación y animación gráfica.</p>
+                    <button class="btn-card" onclick="cambiarPestana('contacto')">Cotizar Proyecto Similar</button>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-media">
+                        <video id="vid-2" muted playsinline preload="metadata" width="300" height="180">
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4">
+                        </video>
+                        <button class="media-badge-btn" id="btn-vid-2" onclick="reproducirMuestraVideo('vid-2', 'btn-vid-2')">▶ Reproducir Muestra</button>
+                    </div>
+                    <span class="tag">Institucional</span>
+                    <h4>Video Institucional de Impacto</h4>
+                    <p>Presentación de valores, instalaciones e hitos organizacionales.</p>
+                    <button class="btn-card" onclick="cambiarPestana('contacto')">Cotizar Proyecto Similar</button>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-media">
+                        <video id="vid-3" muted playsinline preload="metadata" width="300" height="180">
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4">
+                        </video>
+                        <button class="media-badge-btn" id="btn-vid-3" onclick="reproducirMuestraVideo('vid-3', 'btn-vid-3')">▶ Reproducir Muestra</button>
+                    </div>
+                    <span class="tag">Cobertura de Eventos</span>
+                    <h4>Resumen Audiovisual de Congreso</h4>
+                    <p>Grabación multicámara, entrevistas y clip de momentos destacados.</p>
+                    <button class="btn-card" onclick="cambiarPestana('contacto')">Cotizar Proyecto Similar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTAÑA 4: MATERIAL RECIENTE -->
+        <section id="material" class="tab-content">
+            <h2 class="section-title">Material Reciente</h2>
+            <p class="section-subtitle">Bitácora de rodajes, lanzamientos y procesos en estudio.</p>
+            
+            <div class="material-timeline">
+                <div class="timeline-card">
+                    <span>Septiembre 2026</span>
+                    <h4>Desarrollo Web & Identidad Corporativa</h4>
+                    <p>Actualización de plataformas digitales e integración de sistemas de contacto automatizado para Producciones 360.</p>
+                </div>
+                <div class="timeline-card">
+                    <span>Agosto 2026</span>
+                    <h4>Rodaje de Campaña Institucional</h4>
+                    <p>Sesiones de grabación multicámara en locaciones corporativas con esquema de iluminación avanzada.</p>
+                </div>
+                <div class="timeline-card">
+                    <span>Julio 2026</span>
+                    <h4>Postproducción y Motion Graphics</h4>
+                    <p>Edición final de piezas publicitarias con animación 2D/3D y masterización de audio multicanal.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTAÑA 5: CONTACTO -->
+        <section id="contacto" class="tab-content">
+            <h2 class="section-title">Contacto y Ubicación</h2>
+            <div class="contacto-container">
+                <form class="contacto-form" id="form-contacto" action="https://formspree.io/f/xzezgygn" method="POST" onsubmit="enviarFormularioExitoso(event)">
+                    
+                    <!-- Campo Honeypot invisible contra Bots -->
+                    <input type="text" name="_website_honey" class="website-honey" tabindex="-1" autocomplete="off">
+                    
+                    <input type="text" name="nombre" placeholder="Tu Nombre Completo" required maxlength="100">
+                    <input type="email" name="email" placeholder="Tu Correo Electrónico" required maxlength="100">
+                    
+                    <div class="form-row">
+                        <input type="text" name="empresa" placeholder="Nombre de la Empresa" required maxlength="100">
+                        <input type="text" name="cargo" placeholder="Cargo / Puesto" required maxlength="100">
+                    </div>
+
+                    <textarea name="mensaje" rows="4" placeholder="¿En qué proyecto te podemos ayudar?" required maxlength="500"></textarea>
+
+                    <!-- RECUADRO DESTACADO DE PRIVACIDAD CON CASILLA EXPLÍCITA -->
+                    <div class="privacy-box">
+                        <input type="checkbox" id="check-privacidad" required onchange="validarBotonEnvio()">
+                        <label for="check-privacidad">
+                            He leído y acepto el 
+                            <button type="button" class="link-privacidad" onclick="abrirModalPrivacidad()">Aviso de Privacidad</button> 
+                            de Producciones 360. *
+                        </label>
+                    </div>
+
+                    <button type="submit" id="btn-submit-form" class="btn btn-primary" disabled>Enviar Mensaje</button>
+                </form>
+
+                <div class="ubicacion-info">
+                    <h3>PRODUCCIONES 360</h3>
+                    <p><strong>Ubicación:</strong> Calz. Lázaro Cárdenas #3670, Col. Jardines de San Ignacio, Zapopan, Jal.</p>
+                    <p><strong>Email:</strong> informe360noticias@gmail.com</p>
+                    <p><strong>Teléfono:</strong> +52 33 2765 5573</p>
+
+                    <a href="https://wa.me/523327655573?text=Hola,%20me%20interesa%20recibir%20información%20sobre%20sus%20servicios%20audiovisuales" 
+                       target="_blank" 
+                       class="btn-whatsapp">
+                       Enviar WhatsApp Directo
+                    </a>
+
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.88371383827!2d-103.4078864!3d20.6620577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae02fb6fffff%3A0x8e83348f9ec26462!2sCalz.%20L%C3%A1zaro%20C%C3%A1rdenas%203670%2C%20Jardines%20de%20San%20Ignacio%2C%2045040%20Zapopan%2C%20Jal.!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" 
+                            width="100%" 
+                            height="180" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL DE AVISO DE PRIVACIDAD -->
+    <div id="modal-privacidad" class="modal-overlay" onclick="cerrarModalPrivacidad(event)">
+        <div class="modal-body" onclick="event.stopPropagation()">
+            <button class="close-modal-btn" onclick="cerrarModalPrivacidadDirecto()">✕</button>
+            <h3>Aviso de Privacidad</h3>
+            <p><strong>PRODUCCIONES 360</strong>, con domicilio en Calz. Lázaro Cárdenas #3670, Col. Jardines de San Ignacio, Zapopan, Jalisco, es responsable del tratamiento de sus datos personales.</p>
+            <p>Los datos recolectados a través de este formulario (nombre, correo electrónico, empresa y teléfono) serán utilizados exclusivamente para dar atención a sus solicitudes de cotización, envío de propuestas comerciales e información sobre nuestros servicios audiovisuales.</p>
+            <p>Sus datos no serán transferidos ni compartidos con terceros sin su previa autorización. En cualquier momento, usted puede ejercer sus derechos de acceso, rectificación, cancelación u oposición (ARCO) enviando un correo electrónico a <strong>informe360noticias@gmail.com</strong>.</p>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="cerrarModalPrivacidadDirecto()">Entendido y Aceptar</button>
+        </div>
+    </div>
+
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/523327655573?text=Hola,%20quiero%20cotizar%20un%20proyecto" class="whatsapp-flotante" target="_blank">💬</a>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 PRODUCCIONES 360. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- SCRIPT DE FUNCIONALIDAD -->
+    <script>
+        const videoIntro = document.getElementById('intro-video');
+        const fallbackBtn = document.getElementById('intro-fallback-btn');
+        const overlayIntro = document.getElementById('intro-overlay');
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const tiempoCargaPagina = Date.now();
+
+        let introTimer = setTimeout(cerrarIntro, 4000);
+
+        if (videoIntro) {
+            videoIntro.play().catch(() => {
+                if (fallbackBtn) fallbackBtn.style.display = 'block';
+            });
+        }
+
+        function iniciarVideoAudio() {
+            if (videoIntro) videoIntro.play();
+            if (fallbackBtn) fallbackBtn.style.display = 'none';
+        }
+
+        function cerrarIntro() {
+            if (overlayIntro && overlayIntro.style.display !== 'none') {
+                clearTimeout(introTimer);
+                overlayIntro.classList.add('fade-out');
+                setTimeout(() => { overlayIntro.style.display = 'none'; }, 800);
+            }
+        }
+
+        // Menú Hamburguesa Móvil
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('open');
+            });
+        }
+
+        // Navegación entre pestañas
+        function cambiarPestana(idPestana) {
+            document.querySelectorAll('.tab-content').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+            const seccionDestino = document.getElementById(idPestana);
+            if (seccionDestino) seccionDestino.classList.add('active');
+
+            const botonActivo = document.querySelector(`.nav-btn[data-tab="${idPestana}"]`);
+            if (botonActivo) botonActivo.classList.add('active');
+
+            if (mainNav) mainNav.classList.remove('open');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Acordeón de servicios
+        function toggleServicioFila(elemento) {
+            const yaEstaActivo = elemento.classList.contains('active');
+            document.querySelectorAll('.servicio-fila-item').forEach(item => item.classList.remove('active'));
+            if (!yaEstaActivo) elemento.classList.add('active');
+        }
+
+        // Reproducción de muestras de video (5 segundos)
+        const temporizadoresVideos = {};
+        function reproducirMuestraVideo(idVideo, idBoton) {
+            const videoEl = document.getElementById(idVideo);
+            const botonEl = document.getElementById(idBoton);
+
+            if (!videoEl) return;
+            videoEl.pause();
+            videoEl.currentTime = 0;
+
+            if (temporizadoresVideos[idVideo]) clearTimeout(temporizadoresVideos[idVideo]);
+            if (botonEl) botonEl.style.display = 'none';
+
+            videoEl.play().then(() => {
+                temporizadoresVideos[idVideo] = setTimeout(() => {
+                    videoEl.pause();
+                    videoEl.currentTime = 0;
+                    if (botonEl) botonEl.style.display = 'block';
+                }, 5000);
+            }).catch(() => {
+                if (botonEl) botonEl.style.display = 'block';
+                alert('No se pudo reproducir la muestra en este dispositivo.');
+            });
+        }
+
+        // Validación de Checkbox de Aviso de Privacidad
+        function validarBotonEnvio() {
+            const check = document.getElementById('check-privacidad');
+            const btn = document.getElementById('btn-submit-form');
+            if (check && btn) {
+                btn.disabled = !check.checked;
+            }
+        }
+
+        // Funciones Modal Aviso de Privacidad
+        function abrirModalPrivacidad() {
+            const modal = document.getElementById('modal-privacidad');
+            if (modal) modal.classList.add('active');
+        }
+
+        function cerrarModalPrivacidadDirecto() {
+            const modal = document.getElementById('modal-privacidad');
+            if (modal) modal.classList.remove('active');
+        }
+
+        function cerrarModalPrivacidad(e) {
+            if (e.target.id === 'modal-privacidad') cerrarModalPrivacidadDirecto();
+        }
+
+        // Envío Seguro y Antispam
+        async function enviarFormularioExitoso(e) {
+            e.preventDefault();
+            const form = e.target;
+            const honey = form.querySelector('input[name="_website_honey"]').value;
+            
+            // Verificación Honeypot (Campo trampa)
+            if (honey !== '') return;
+
+            // Verificación de tiempo (bloquea envíos menores a 2.5 segundos)
+            if (Date.now() - tiempoCargaPagina < 2500) {
+                alert('Envío bloqueado por seguridad.');
+                return;
+            }
+
+            const data = new FormData(form);
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    alert('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo a la brevedad.');
+                    form.reset();
+                    validarBotonEnvio();
+                } else {
+                    alert('Hubo un problema al enviar el mensaje. Por favor intenta de nuevo.');
+                }
+            } catch (error) {
+                alert('Error de conexión. Verifica tu red e intenta nuevamente.');
+            }
+        }
+
+        // Protección básica contra inspección contextual
+        document.addEventListener('contextmenu', e => {
+            if (e.target.tagName === 'VIDEO' || e.target.tagName === 'IMG') e.preventDefault();
+        });
+    </script>
+</body>
+</html>
+```
+
+El archivo ha sido actualizado con el bloque `<div class="privacy-box">` destacado en color azul translúcido con su casilla `<input type="checkbox" id="check-privacidad">` explícita, además de conectar la función `validarBotonEnvio()` para activar el botón de envío únicamente al marcarla.
