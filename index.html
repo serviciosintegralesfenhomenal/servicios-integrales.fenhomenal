@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Integrales FenHomenal | Tu Solución FenHomenal</title>
+    <style>
+        :root {
+            --primary-color: #0d233a;
+            --secondary-color: #c5a059;
+            --dark-color: #1a1a1a;
+            --light-color: #f8f9fa;
+            --white: #ffffff;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--dark-color);
+            background-color: var(--white);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* HEADER & NAV */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .logo img {
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(rgba(13, 35, 58, 0.85), rgba(13, 35, 58, 0.85)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h4 {
+            color: var(--secondary-color);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #e2e8f0;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #b08d48;
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        /* QUIÉNES SOMOS */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .about-card {
+            background: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            border-top: 4px solid var(--secondary-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .about-card p {
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        /* SERVICIOS */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 20px;
+        }
+
+        .service-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .service-content p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* TRAMITOLOGÍA */
+        .tramitologia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .tramite-item {
+            background: var(--light-color);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .tramite-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .tramite-item p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* CONTACTO */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-block h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .info-block p {
+            color: var(--gray);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 60px 20px 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                FENHOMENAL
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#nosotros">QUIÉNES SOMOS</a></li>
+                <li><a href="#servicios">SERVICIOS</a></li>
+                <li><a href="#tramitologia">TRAMITOLOGÍA</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div id="home" class="hero">
+        <div class="hero-content">
+            <h4>SERVICIOS INTEGRALES FENHOMENAL</h4>
+            <h1>“TU SOLUCIÓN FENHOMENAL”</h1>
+            <p>Asesoría integral, gestión inmobiliaria y respaldo corporativo profesional para facilitar sus trámites y consolidar sus proyectos estratégicos.</p>
+            <div class="btn-group">
+                <a href="#contacto" class="btn btn-primary">AGENDAR ASESORÍA</a>
+                <a href="#servicios" class="btn btn-secondary">NUESTROS SERVICIOS</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="nosotros">
+        <div class="section-title">
+            <h2>¿QUIÉNES SOMOS?</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>ASESORÍA</h3>
+                <p>“Brindamos orientación profesional para facilitar la toma de decisiones y proteger los intereses de nuestros clientes, mediante acompañamiento jurídico, administrativo y empresarial.”</p>
+            </div>
+            <div class="about-card">
+                <h3>GESTIÓN</h3>
+                <p>“Facilitamos la realización y seguimiento de trámites administrativos y corporativos, simplificando procesos y reduciendo tiempos y cargas operativas.”</p>
+            </div>
+            <div class="about-card">
+                <h3>INMOBILIARIA</h3>
+                <p>“Ofrecemos acompañamiento en operaciones inmobiliarias, incluyendo gestión, comercialización, corretaje y asesoría en bienes raíces residenciales, comerciales e industriales.”</p>
+            </div>
+            <div class="about-card">
+                <h3>RESPALDO</h3>
+                <p>“Acompañamos cada proceso con atención personalizada, discreción y seguimiento profesional, buscando que nuestros clientes cuenten con un respaldo confiable durante cada etapa.”</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <div class="section-title">
+            <h2>NUESTROS SERVICIOS</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80" alt="Asesoría Legal e Integral">
+                <div class="service-content">
+                    <h3>ASESORÍA LEGAL E INTEGRAL</h3>
+                    <p>Orientación jurídica y corporativa especializada para salvaguardar los intereses y operaciones de su empresa.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Servicios Inmobiliarios">
+                <div class="service-content">
+                    <h3>SERVICIOS INMOBILIARIOS</h3>
+                    <p>Gestión, comercialización, corretaje y asesoría integral en bienes raíces comerciales, industriales y residenciales.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Formalización de Empresas">
+                <div class="service-content">
+                    <h3>FORMALIZACIÓN DE EMPRESAS</h3>
+                    <p>Constitución de sociedades y estructuración societaria bajo los más estrictos marcos normativos vigentes.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Estructuración Empresarial">
+                <div class="service-content">
+                    <h3>ESTRUCTURACIÓN EMPRESARIAL</h3>
+                    <p>Diseño organizacional estratégico orientado a maximizar la eficiencia y el control administrativo interno.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tramitologia">
+        <div class="section-title">
+            <h2>GESTIÓN Y TRAMITOLOGÍA</h2>
+        </div>
+        <div class="tramitologia-grid">
+            <div class="tramite-item">
+                <h4>Trámites notariales</h4>
+                <p>Coordinación puntual y seguimiento formal para la protocolización de instrumentos públicos.</p>
+            </div>
+            <div class="tramite-item">
+                <h4>Elaboración de contratos</h4>
+                <p>Redacción experta de acuerdos civiles, mercantiles, laborales y de índole inmobiliaria.</p>
+            </div>
+            <div class="tramite-item">
+                <h4>Dependencias gubernamentales</h4>
+                <p>Gestión institucional eficiente ante las diversas instancias de la administración pública.</p>
+            </div>
+            <div class="tramite-item">
+                <h4>Licencias y permisos</h4>
+                <p>Tramitación de autorizaciones de apertura, funcionamiento y operación comercial.</p>
+            </div>
+            <div class="tramite-item">
+                <h4>Permisos de obra y construcción</h4>
+                <p>Acompañamiento técnico y legal en normativas de desarrollo urbano e inmobiliario.</p>
+            </div>
+            <div class="tramite-item">
+                <h4>Agendamiento de citas oficiales</h4>
+                <p>Obtención directa y organizada de citas prioritarias ante oficinas gubernamentales.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="section-title">
+            <h2>CONTACTO INSTITUCIONAL</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-form">
+                <form onsubmit="event.preventDefault(); alert('¡Solicitud enviada con éxito! Nos pondremos en contacto con usted a la brevedad.');">
+                    <div class="form-group">
+                        <input type="text" name="nombre" placeholder="Nombre o Razón Social" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Correo electrónico corporativo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="telefono" placeholder="Teléfono de contacto" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="mensaje" rows="4" placeholder="Detalle de su solicitud" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer; width: 100%;">ENVIAR SOLICITUD</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="info-block">
+                    <h3>UBICACIÓN</h3>
+                    <p>C. Netzahualcóyotl #1597, Ed. EPICENTRIA, piso 4, Col. Cd. del Sol, Zapopan, Jal.</p>
+                </div>
+                <div class="info-block">
+                    <h3>TELÉFONOS</h3>
+                    <p><a href="tel:+523321546253">+52 (33) 2154 6253</a></p>
+                    <p><a href="tel:+523317541199">+52 (33) 1754 1199</a></p>
+                </div>
+                <div class="info-block">
+                    <h3>CORREO ELECTRÓNICO</h3>
+                    <p><a href="mailto:serviciosintegralesfenhomenal@gmail.com">serviciosintegralesfenhomenal@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>SERVICIOS INTEGRALES FENHOMENAL</h3>
+                <p style="margin-top: 10px; color: var(--secondary-color);">“Tu solución FENHOMENAL”</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#nosotros">Quiénes Somos</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#tramitologia">Tramitología</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Oficina Central</h4>
+                <p>C. Netzahualcóyotl #1597, Ed. EPICENTRIA, piso 4<br>Col. Cd. del Sol, Zapopan, Jal.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Servicios Integrales FenHomenal. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
