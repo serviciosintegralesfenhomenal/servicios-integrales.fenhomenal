@@ -6,7 +6,7 @@
     
     <!-- Cabeceras de Seguridad Web -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://formspree.io;">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -306,7 +306,8 @@
         </div>
         <div class="contact-container">
             <div class="contact-form">
-                <form onsubmit="event.preventDefault(); alert('¡Solicitud enviada con éxito! Nos pondremos en contacto con usted a la brevedad.');">
+                <!-- Formulario conectado a Formspree -->
+                <form action="https://formspree.io/f/xyezpppp" method="POST">
                     <div class="form-group">
                         <input type="text" name="nombre" placeholder="Nombre o Razón Social" required>
                     </div>
